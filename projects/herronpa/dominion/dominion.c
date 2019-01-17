@@ -646,7 +646,7 @@ int getCost(int cardNumber)
 int playSmith(int currentPlayer, struct gameState *state, int handPos)
 {
       //+3 Cards
-      for (int i = 0; i < 3; i++)
+      for (int i = 0; i < 2; i++)
         {
           drawCard(currentPlayer, state);
         }
@@ -663,7 +663,7 @@ int playAdventurer(int currentPlayer, struct gameState *state)
       int cardDrawn;
       int drawntreasure=0;
 
-      while(drawntreasure<2){
+      while(drawntreasure<3){
         if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
           shuffle(currentPlayer, state);
         }
@@ -681,6 +681,72 @@ int playAdventurer(int currentPlayer, struct gameState *state)
         state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
         z=z-1;
       }
+      return 0;
+}
+
+int playCouncil(int currentPlayer, struct gameState *state, int handPos)
+{
+      //+4 Cards
+      for (int i = 0; i < 3; i++)
+        {
+          drawCard(currentPlayer, state);
+        }
+
+      //+1 Buy
+      state->numBuys++;
+
+      //Each other player draws a card
+      for (int i = 0; i < state->numPlayers; i++)
+        {
+          if ( i != currentPlayer )
+            {
+              drawCard(i, state);
+            }
+        }
+
+      //put played card in played card pile
+      discardCard(handPos, currentPlayer, state, 0);
+
+      return 0;
+}
+
+int playRemodel(int currentPlayer, struct gameState *state, int choice1, int choice2, int handPos)
+{    
+     int j = state->hand[currentPlayer][choice1];  //store card we will trash
+
+      if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
+        {
+          return -1;
+        }
+
+      gainCard(choice2, state, 0, currentPlayer);
+
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+
+      //discard trashed card
+      for (int i = 0; i < state->handCount[currentPlayer]; i++)
+        {
+          if (state->hand[currentPlayer][i] == j)
+            {
+              discardCard(i, currentPlayer, state, 0);
+              break;
+            }
+        }
+
+      return 0;
+}
+
+int playVillage(int currentPlayer, struct gameState *state, int handPos)
+{
+      //+1 Card
+      drawCard(currentPlayer, state);
+
+      //+2 Actions
+      state->numActions = state->numActions + 1;
+
+      //discard played card from hand
+      discardCard(handPos, currentPlayer, state, 0);
       return 0;
 }
 
@@ -704,35 +770,17 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     return playSmith(currentPlayer, state, handPos);
   if(card == adventurer)
     return playAdventurer(currentPlayer, state);
+  if(card == council_room)
+    return playCouncil(currentPlayer, state, handPos);
+  if(card == remodel)
+    return playRemodel(currentPlayer, state, choice1, choice2, handPos);
+  if(card == village)
+    return playVillage(currentPlayer, state, handPos);
 	
   //uses switch to select card and perform actions
   switch( card ) 
     {
-		
-    case council_room:
-      //+4 Cards
-      for (i = 0; i < 4; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //+1 Buy
-      state->numBuys++;
-			
-      //Each other player draws a card
-      for (i = 0; i < state->numPlayers; i++)
-	{
-	  if ( i != currentPlayer )
-	    {
-	      drawCard(i, state);
-	    }
-	}
-			
-      //put played card in played card pile
-      discardCard(handPos, currentPlayer, state, 0);
-			
-      return 0;
-			
+				
     case feast:
       //gain card with cost up to 5
       //Backup hand
@@ -824,33 +872,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	}
 			
       return 0;
-			
-    case remodel:
-      j = state->hand[currentPlayer][choice1];  //store card we will trash
 
-      if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
-	{
-	  return -1;
-	}
-
-      gainCard(choice2, state, 0, currentPlayer);
-
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-
-      //discard trashed card
-      for (i = 0; i < state->handCount[currentPlayer]; i++)
-	{
-	  if (state->hand[currentPlayer][i] == j)
-	    {
-	      discardCard(i, currentPlayer, state, 0);			
-	      break;
-	    }
-	}
-
-
-      return 0;
-	
     case village:
       //+1 Card
       drawCard(currentPlayer, state);
