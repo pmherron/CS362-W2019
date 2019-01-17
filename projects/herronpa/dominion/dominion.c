@@ -643,6 +643,20 @@ int getCost(int cardNumber)
   return -1;
 }
 
+int playSmith(int currentPlayer, struct gameState *state, int handPos)
+{
+      //+3 Cards
+      for (int i = 0; i < 3; i++)
+        {
+          drawCard(currentPlayer, state);
+        }
+
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+}
+
+
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
@@ -661,7 +675,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
-  
+ 
+  if(card == smithy)
+    return playSmith(currentPlayer, state, handPos);
 	
   //uses switch to select card and perform actions
   switch( card ) 
@@ -774,6 +790,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	{
 	  return -1;
 	}
+
 		
       if (choice2 > treasure_map || choice2 < curse)
 	{
@@ -827,18 +844,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 
       return 0;
-		
-    case smithy:
-      //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
-		
+	
     case village:
       //+1 Card
       drawCard(currentPlayer, state);
@@ -1328,6 +1334,5 @@ int updateCoins(int player, struct gameState *state, int bonus)
   return 0;
 }
 
-
-//end of dominion.c
+//end of d minion.c
 
