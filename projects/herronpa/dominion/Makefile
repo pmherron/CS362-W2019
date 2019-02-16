@@ -29,6 +29,40 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+runrandomtestcard1:
+	echo "Results for running Smithy Card:" > randomtestcard1.out
+	gcc -o randomtestcard1 randomtestcard1.c dominion.c rngs.c $(CFLAGS)
+	./randomtestcard1 >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+
+runrandomtestcard2:
+	echo "Results for running Village Card:" > randomtestcard2.out
+	gcc -o randomtestcard2 randomtestcard2.c dominion.c rngs.c $(CFLAGS)
+	./randomtestcard2 >> randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+
+runrandomtestcardadventurer:
+	echo "Results for running Adventuruer Card:" > randomtestadventurer.out
+	gcc -o randomtestadv randomtestadventurer.c dominion.c rngs.c $(CFLAGS)
+	./randomtestadv >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+
+runrandomtests:
+	echo "Results for running Smithy Card:" > randomtestcard1.out
+	gcc -o randomtestcard1 randomtestcard1.c dominion.c rngs.c $(CFLAGS)
+	./randomtestcard1 >> randomtestcard1.out
+	gcov dominion.c >> randomtestcard1.out
+	
+	echo "Results for running Village Card:" > randomtestcard2.out
+	gcc -o randomtestcard2 randomtestcard2.c dominion.c rngs.c $(CFLAGS)
+	./randomtestcard2 >> randomtestcard2.out
+	gcov dominion.c >> randomtestcard2.out
+	
+	echo "Results for running Adventuruer Card:" > randomtestadventurer.out
+	gcc -o randomtestadv randomtestadventurer.c dominion.c rngs.c $(CFLAGS)
+	./randomtestadv >> randomtestadventurer.out
+	gcov dominion.c >> randomtestadventurer.out
+
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
@@ -36,4 +70,4 @@ player: player.c interface.o
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe randomtestcard1 randomtestcard2 randomtestadv
