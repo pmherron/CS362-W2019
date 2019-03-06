@@ -1,0 +1,131 @@
+Results for running Dominion tests: 
+unittest1.c:
+FAIL: On Test Base Game
+PASS: On Test Base Game After Check
+PASS: On Test Zero Province
+FAIL: On Test One Province
+PASS: On Test Negative Provinces
+FAIL: On Test Two Empty Supply Piles
+PASS: On Test Three Empty Supply Piles
+PASS: On Test All Supply Piles Empty
+TEST SUITE FOUND FAILING TESTS!!
+File 'dominion.c'
+Lines executed:16.99% of 565
+Creating 'dominion.c.gcov'
+
+unittest2.c:
+PASS: On Test Curse Card
+PASS: On Test Estate Card
+PASS: On Test Duchy Card
+PASS: On Test Province Card
+PASS: On Test Copper Card
+PASS: On Test Silver Card
+PASS: On Test Gold Card
+PASS: On Test Adventurer Card
+PASS: On Test Council Room Card
+PASS: On Test Feast Card
+PASS: On Test Gardens Card
+PASS: On Test Mine Card
+PASS: On Test Remodel Card
+PASS: On Test Smithy Card
+PASS: On Test Village Card
+PASS: On Test Baron Card
+PASS: On Test Great Hall Card
+PASS: On Test Minion Card
+PASS: On Test Steward Card
+PASS: On Test Tribute Card
+PASS: On Test Ambassador Card
+PASS: On Test Cutpurse Card
+PASS: On Test Embargo Card
+PASS: On Test Outpost Card
+PASS: On Test Salvager Card
+PASS: On Test Sea Hag Card
+PASS: On Test Treasure Map Card
+PASS: On Test Curse Card (Again)
+PASS: On Test Gardens Card (Again)
+PASS: On Test Baron Card (Again)
+ALL TESTS PASSED!!
+File 'dominion.c'
+Lines executed:2.30% of 565
+Creating 'dominion.c.gcov'
+
+unittest3.c:
+PASS: On Test Positive Player Turn
+PASS: On Test Zero Player Turn
+PASS: On Test No GameState Mods
+PASS: On Test Negative Player Turn
+ALL TESTS PASSED!!
+File 'dominion.c'
+Lines executed:15.75% of 565
+Creating 'dominion.c.gcov'
+
+unittest4.c:
+PASS: On Test Curse Cost
+PASS: On Test Estate Cost
+PASS: On Test Duchy Cost
+PASS: On Test Province Cost
+PASS: On Test Copper Cost
+PASS: On Test Silver Cost
+PASS: On Test Gold Cost
+PASS: On Test Adventurer Cost
+PASS: On Test Council Cost
+PASS: On Test Feast Cost
+PASS: On Test Gardens Cost
+PASS: On Test Mine Cost
+PASS: On Test Remodel Cost
+PASS: On Test Smithy Cost
+PASS: On Test Village Cost
+PASS: On Test Baron Cost
+PASS: On Test Great Hall Cost
+PASS: On Test Minion Cost
+PASS: On Test Steward Cost
+PASS: On Test Curse Cost
+PASS: On Test Ambassador Cost
+PASS: On Test Cutpurse Cost
+PASS: On Test Embargo Cost
+PASS: On Test Outpost Cost
+PASS: On Test Salvager Cost
+PASS: On Test Sea Hag Cost
+PASS: On Test Treasure Map Cost
+ALL TESTS PASSED!!
+File 'dominion.c'
+Lines executed:5.13% of 565
+Creating 'dominion.c.gcov'
+
+cardtest1.c:
+PASS: On Test Gained Three Cards
+PASS: On Test Removed Three Deck Cards
+PASS: On Test Removed Smithy Card
+PASS: On Test All Draws From Deck
+ALL TESTS PASSED!!
+File 'dominion.c'
+Lines executed:21.77% of 565
+Creating 'dominion.c.gcov'
+
+cardtest2.c:
+PASS: On Test Correct Number of Treasure Drawn
+PASS: On Test Adventurer Discarded
+PASS: On Test Stop Shuffle With No Treasure Cards
+ALL TESTS PASSED!!
+File 'dominion.c'
+Lines executed:26.19% of 565
+Creating 'dominion.c.gcov'
+
+cardtest3.c:
+PASS: On Test Net Zero Card Change
+PASS: On Test Gained Two Actions
+PASS: On Test Discarded Village Card
+ALL TESTS PASSED!!
+File 'dominion.c'
+Lines executed:21.77% of 565
+Creating 'dominion.c.gcov'
+
+cardtest4.c:
+PASS: On Test Net Zero Card Change
+PASS: On Test Gained One Action
+PASS: On Test Discarded Great Hall Card
+ALL TESTS PASSED!!
+File 'dominion.c'
+Lines executed:21.59% of 565
+Creating 'dominion.c.gcov'
+
